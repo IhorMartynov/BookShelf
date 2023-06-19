@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ using BookShelf.DAL.Entities;
 using BookShelf.DAL.Mappers;
 using BookShelf.Domain.Exceptions;
 using BookShelf.Domain.Models;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace BookShelf.DAL.Repositories
@@ -47,12 +49,16 @@ namespace BookShelf.DAL.Repositories
             int pageSize = 20,
             CancellationToken cancellationToken = default)
         {
+            var parameters = new object[]
+            {
+                new SqlParameter("@SearchTerm", SqlDbType.VarChar) {Value = searchText ?? "", Direction = ParameterDirection.Input},
+                new SqlParameter("@SortColumn", SqlDbType.VarChar) {Value = GetSortColumn(sortColumnName), Direction = ParameterDirection.Input},
+                new SqlParameter("@PageNumber", SqlDbType.Int) {Value = pageNumber > 0 ? pageNumber : 1, Direction = ParameterDirection.Input},
+                new SqlParameter("@PageSize", SqlDbType.Int) {Value = pageSize > 0 ? pageSize : 20, Direction = ParameterDirection.Input}
+            };
+
             var books = await _libraryContext.SearchBooksWithPaginationResults
-                .FromSqlRaw("sp_SearchBooksWithPagination {0}, {1}, {2}, {3}",
-                    searchText ?? "",
-                    GetSortColumn(sortColumnName),
-                    pageNumber >= 0 ? pageNumber : 0,
-                    pageSize > 0 ? pageSize : 20)
+                .FromSqlRaw("EXEC sp_SearchBooksWithPagination @SearchTerm, @SortColumn, @PageNumber, @PageSize", parameters)
                 .ToArrayAsync(cancellationToken);
 
             return books.Select(_bookMapper.Map)

@@ -16,7 +16,7 @@ namespace BookShelf.DAL.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Ignore<SearchBooksWithPaginationResult>();
+            //modelBuilder.Ignore<SearchBooksWithPaginationResult>();
 
             modelBuilder.Entity<CategoryEntity>()
                 .HasData(new CategoryEntity {Id = 1, Name = "Fiction", Description = "Fiction"},
