@@ -15,8 +15,15 @@ public class BooksController : ControllerBase
         _booksService = booksService;
 
     [HttpGet]
-    public Task<IEnumerable<Book>> GetAll(CancellationToken cancellationToken) =>
-        _booksService.GetAllBooksAsync(cancellationToken);
+    public Task<IEnumerable<Book>> Search(
+        [FromQuery] string? search,
+        [FromQuery] string? sortByColumn,
+        [FromQuery] bool? sortAscending,
+        [FromQuery] int? page,
+        [FromQuery] int? pageSize,
+        CancellationToken cancellationToken) =>
+        _booksService.GetBooksAsync(search, sortByColumn, sortAscending ?? true, page ?? 0, pageSize ?? 20,
+            cancellationToken);
 
     [HttpGet("{id}")]
     [ProducesResponseType(typeof(Book), StatusCodes.Status200OK)]

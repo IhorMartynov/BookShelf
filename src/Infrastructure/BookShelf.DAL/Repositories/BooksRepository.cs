@@ -40,14 +40,23 @@ namespace BookShelf.DAL.Repositories
         }
 
         /// <inheritdoc/>
-        public Task<IEnumerable<Book>> GetBooksAsync(string searchText,
+        public async Task<IEnumerable<Book>> GetBooksAsync(string searchText,
             string sortColumnName,
             bool sortAscending,
             int pageNumber,
             int pageSize = 20,
             CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException();
+            var books = await _libraryContext.SearchBooksWithPaginationResults
+                .FromSqlRaw("sp_SearchBooksWithPagination {0}, {1}, {2}, {3}",
+                    searchText ?? "",
+                    GetSortColumn(sortColumnName),
+                    pageNumber >= 0 ? pageNumber : 0,
+                    pageSize > 0 ? pageSize : 20)
+                .ToArrayAsync(cancellationToken);
+
+            return books.Select(_bookMapper.Map)
+                .ToArray();
         }
 
         /// <inheritdoc/>
@@ -109,6 +118,21 @@ namespace BookShelf.DAL.Repositories
             _libraryContext.Books.Remove(entity);
 
             await _libraryContext.SaveChangesAsync(cancellationToken);
+        }
+
+        private static string GetSortColumn(string sortColumn)
+        {
+            switch (sortColumn?.ToUpperInvariant())
+            {
+                case "TITLE":
+                    return nameof(BookEntity.Title);
+                case "AUTHOR":
+                    return nameof(BookEntity.Author);
+                case "CATEGORY":
+                    return nameof(BookEntity.Category);
+            }
+
+            return nameof(BookEntity.Title);
         }
     }
 }

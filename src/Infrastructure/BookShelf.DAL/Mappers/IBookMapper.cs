@@ -12,5 +12,12 @@ namespace BookShelf.DAL.Mappers
         /// <param name="bookEntity">Book entity.</param>
         /// <returns></returns>
         Book Map(BookEntity bookEntity);
+
+        /// <summary>
+        /// Maps a SearchBooksWithPaginationResult to a Book object.
+        /// </summary>
+        /// <param name="bookEntity">Book entity.</param>
+        /// <returns></returns>
+        Book Map(SearchBooksWithPaginationResult bookEntity);
     }
 }

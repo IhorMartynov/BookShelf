@@ -4,14 +4,16 @@ using BookShelf.DAL.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BookShelf.DAL.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    partial class LibraryContextModelSnapshot : ModelSnapshot
+    [Migration("20230617204125_SeedCategoriesMigration")]
+    partial class SeedCategoriesMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,68 +50,6 @@ namespace BookShelf.DAL.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Books");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("ded9e342-ef0d-4c2a-bdd0-8e5ff2a117ed"),
-                            Author = "L. Tolstoy",
-                            CategoryId = 4L,
-                            ISBN = "123456",
-                            PublicationYear = 2001,
-                            Quantity = 10,
-                            Title = "War and Peace (tom 1)"
-                        },
-                        new
-                        {
-                            Id = new Guid("36022756-536a-4099-b0d2-65a099d2714f"),
-                            Author = "L. Tolstoy",
-                            CategoryId = 4L,
-                            ISBN = "123457",
-                            PublicationYear = 2001,
-                            Quantity = 10,
-                            Title = "War and Peace (tom 2)"
-                        },
-                        new
-                        {
-                            Id = new Guid("d6f5cd92-6fd3-472f-a3b8-0aa15faa8a83"),
-                            Author = "L. Tolstoy",
-                            CategoryId = 4L,
-                            ISBN = "123458",
-                            PublicationYear = 2001,
-                            Quantity = 10,
-                            Title = "War and Peace (tom 3)"
-                        },
-                        new
-                        {
-                            Id = new Guid("567289db-d2f4-41e7-b417-c292b0378913"),
-                            Author = "Zelazny",
-                            CategoryId = 1L,
-                            ISBN = "123459",
-                            PublicationYear = 1998,
-                            Quantity = 20,
-                            Title = "Amber Chronicles"
-                        },
-                        new
-                        {
-                            Id = new Guid("08ac84b7-62be-40ee-9128-02b3f8fdf967"),
-                            Author = "J.R.R. Tolkien",
-                            CategoryId = 2L,
-                            ISBN = "123460",
-                            PublicationYear = 1983,
-                            Quantity = 5,
-                            Title = "Hobbit"
-                        },
-                        new
-                        {
-                            Id = new Guid("1b7652f5-be71-48e9-9493-fe54976db20a"),
-                            Author = "W. Shakespeare",
-                            CategoryId = 3L,
-                            ISBN = "123461",
-                            PublicationYear = 1985,
-                            Quantity = 15,
-                            Title = "Hamlet"
-                        });
                 });
 
             modelBuilder.Entity("BookShelf.DAL.Entities.CategoryEntity", b =>

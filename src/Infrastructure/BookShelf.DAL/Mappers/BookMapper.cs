@@ -18,5 +18,19 @@ namespace BookShelf.DAL.Mappers
                 CategoryId = bookEntity.CategoryId,
                 CategoryName = bookEntity.Category?.Name
             };
+
+        /// <inheritdoc/>
+        public Book Map(SearchBooksWithPaginationResult bookEntity) =>
+            new Book
+            {
+                Id = bookEntity.Id,
+                Title = bookEntity.Title,
+                Author = bookEntity.Author,
+                ISBN = bookEntity.ISBN,
+                PublicationYear = bookEntity.PublicationYear,
+                Quantity = bookEntity.Quantity,
+                CategoryId = bookEntity.CategoryId,
+                CategoryName = bookEntity.CategoryName
+            };
     }
 }

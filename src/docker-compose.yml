@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  bookshelf.webapi.core:
+    image: ${DOCKER_REGISTRY-}bookshelfwebapicore
+    container_name: webapi_core
+    build:
+      context: .
+      dockerfile: UI/BookShelf.WebApi.Core/Dockerfile
+  sql:
+    image: ${DOCKER_REGISTRY-}sqlserver2019
+    container_name: sql_server2019
+    ports:
+      - "60666:1433" 
+    environment:
+      - ACCEPT_EULA=y
+      - SA_PASSWORD=Qwerty@123
+      - MSSQL_AGENT_ENABLED=true
+    build:
+      context: .
+      dockerfile: UI/BookShelf.WebApi.Core/Data/Dockerfile
