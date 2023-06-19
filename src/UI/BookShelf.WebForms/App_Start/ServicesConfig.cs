@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Configuration;
 using BookShelf.Application;
 using BookShelf.DAL;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BookShelf.WebForms.App_Start
+namespace BookShelf.WebForms
 {
     public static class ServicesConfig
     {
@@ -11,7 +12,7 @@ namespace BookShelf.WebForms.App_Start
         {
             var services = new ServiceCollection();
 
-            services.AddRepositories("Server=localhost,1433;Database=LibraryDb;User Id=sa;Password=Qwerty@123;Encrypt=False;TrustServerCertificate=True")
+            services.AddRepositories(ConfigurationManager.ConnectionStrings["LibraryDb"].ConnectionString)
                 .AddApplicationServices();
 
             return services.BuildServiceProvider();
