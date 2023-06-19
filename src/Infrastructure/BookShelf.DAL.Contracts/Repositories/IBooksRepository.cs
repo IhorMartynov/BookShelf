@@ -25,7 +25,7 @@ namespace BookShelf.DAL.Contracts.Repositories
         /// <param name="pageSize">Page size.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns></returns>
-        Task<IEnumerable<Book>> GetBooksAsync(string searchText,
+        Task<BooksPage> GetBooksAsync(string searchText,
             string sortColumnName,
             bool sortAscending,
             int pageNumber,

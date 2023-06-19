@@ -15,7 +15,7 @@ public class BooksController : ControllerBase
         _booksService = booksService;
 
     [HttpGet]
-    public Task<IEnumerable<Book>> Search(
+    public Task<BooksPage> Search(
         [FromQuery] string? search,
         [FromQuery] string? sortByColumn,
         [FromQuery] bool? sortAscending,

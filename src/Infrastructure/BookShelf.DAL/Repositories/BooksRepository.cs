@@ -42,27 +42,34 @@ namespace BookShelf.DAL.Repositories
         }
 
         /// <inheritdoc/>
-        public async Task<IEnumerable<Book>> GetBooksAsync(string searchText,
+        public async Task<BooksPage> GetBooksAsync(string searchText,
             string sortColumnName,
             bool sortAscending,
             int pageNumber,
             int pageSize = 20,
             CancellationToken cancellationToken = default)
         {
+            var pageNumberCorrected = pageNumber > 0 ? pageNumber : 1;
+            var pageSizeCorrected = pageSize > 0 ? pageSize : 20;
+
             var parameters = new object[]
             {
                 new SqlParameter("@SearchTerm", SqlDbType.VarChar) {Value = searchText ?? "", Direction = ParameterDirection.Input},
                 new SqlParameter("@SortColumn", SqlDbType.VarChar) {Value = GetSortColumn(sortColumnName), Direction = ParameterDirection.Input},
-                new SqlParameter("@PageNumber", SqlDbType.Int) {Value = pageNumber > 0 ? pageNumber : 1, Direction = ParameterDirection.Input},
-                new SqlParameter("@PageSize", SqlDbType.Int) {Value = pageSize > 0 ? pageSize : 20, Direction = ParameterDirection.Input}
+                new SqlParameter("@PageNumber", SqlDbType.Int) {Value = pageNumberCorrected, Direction = ParameterDirection.Input},
+                new SqlParameter("@PageSize", SqlDbType.Int) {Value = pageSizeCorrected, Direction = ParameterDirection.Input}
             };
 
             var books = await _libraryContext.SearchBooksWithPaginationResults
                 .FromSqlRaw("EXEC sp_SearchBooksWithPagination @SearchTerm, @SortColumn, @PageNumber, @PageSize", parameters)
                 .ToArrayAsync(cancellationToken);
 
-            return books.Select(_bookMapper.Map)
-                .ToArray();
+            return new BooksPage
+            {
+                Books = books.Select(_bookMapper.Map).ToArray(),
+                Page = pageNumberCorrected,
+                PageSize = pageSizeCorrected
+            };
         }
 
         /// <inheritdoc/>

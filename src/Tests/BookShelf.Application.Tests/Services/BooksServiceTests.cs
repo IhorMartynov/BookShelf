@@ -66,7 +66,7 @@ public sealed class BooksServiceTests
         const int pageNumber = 1;
         const int pageSize = 33;
         var cancellationSource = new CancellationTokenSource();
-        var books = new[] {new Book()};
+        var books = new BooksPage();
 
         var repositoryMock = new Mock<IBooksRepository>();
         repositoryMock.Setup(repository => repository.GetBooksAsync(

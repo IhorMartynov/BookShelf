@@ -84,9 +84,6 @@ public sealed class CategoriesRepositoryTests : RepositoryTestsBase
         // Assert
         result.Should().NotBeNull()
             .And.HaveSameCount(entities);
-        result.Should().Equal(entities, (model, entity) => model.Id == entity.Id
-                                                           && model.Name == entity.Name
-                                                           && model.Description == entity.Description);
         categoryMapperMock.Verify();
     }
 

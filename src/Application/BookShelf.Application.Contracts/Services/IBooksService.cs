@@ -34,7 +34,7 @@ namespace BookShelf.Application.Contracts.Services
         /// <param name="pageSize">Number of books per page.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns></returns>
-        Task<IEnumerable<Book>> GetBooksAsync(string searchText,
+        Task<BooksPage> GetBooksAsync(string searchText,
             string sortColumnName,
             bool sortAscending,
             int pageNumber,

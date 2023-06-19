@@ -26,7 +26,7 @@ namespace BookShelf.Application.Services
             _booksRepository.GetAllBooksAsync(cancellationToken);
 
         /// <inheritdoc/>
-        public Task<IEnumerable<Book>> GetBooksAsync(
+        public Task<BooksPage> GetBooksAsync(
             string searchText,
             string sortColumnName,
             bool sortAscending,

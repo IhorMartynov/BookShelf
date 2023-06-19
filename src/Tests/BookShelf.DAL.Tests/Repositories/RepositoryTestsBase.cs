@@ -6,7 +6,7 @@ namespace BookShelf.DAL.Tests.Repositories;
 
 public abstract class RepositoryTestsBase
 {
-    protected Fixture Fixture = new Fixture();
+    protected Fixture Fixture = new();
 
     protected static async Task<LibraryContext> CreateEmptyLibraryContext()
     {
@@ -15,8 +15,9 @@ public abstract class RepositoryTestsBase
             .Options;
 
         var context = new LibraryContext(options);
-        await context.Database.EnsureDeletedAsync();
-        await context.Database.EnsureCreatedAsync();
+
+        context.Categories.RemoveRange(await context.Categories.ToArrayAsync());
+        context.Books.RemoveRange(await context.Books.ToArrayAsync());
 
         return context;
     }
