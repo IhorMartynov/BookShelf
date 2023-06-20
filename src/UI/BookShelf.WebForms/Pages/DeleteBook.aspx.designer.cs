@@ -11,7 +11,7 @@ namespace BookShelf.WebForms.Pages
 {
 
 
-    public partial class BookDetails
+    public partial class DeleteBook
     {
 
         /// <summary>
@@ -24,15 +24,6 @@ namespace BookShelf.WebForms.Pages
         protected global::System.Web.UI.WebControls.HiddenField IdHiddenField;
 
         /// <summary>
-        /// BookTitleLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label BookTitleLabel;
-
-        /// <summary>
         /// TitleLabel control.
         /// </summary>
         /// <remarks>
@@ -40,15 +31,6 @@ namespace BookShelf.WebForms.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label TitleLabel;
-
-        /// <summary>
-        /// TitleTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TitleTextBox;
 
         /// <summary>
         /// AuthorLabel control.
@@ -60,15 +42,6 @@ namespace BookShelf.WebForms.Pages
         protected global::System.Web.UI.WebControls.Label AuthorLabel;
 
         /// <summary>
-        /// AuthorTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox AuthorTextBox;
-
-        /// <summary>
         /// ISBNLabel control.
         /// </summary>
         /// <remarks>
@@ -76,15 +49,6 @@ namespace BookShelf.WebForms.Pages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label ISBNLabel;
-
-        /// <summary>
-        /// ISBNTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox ISBNTextBox;
 
         /// <summary>
         /// PublicationYearLabel control.
@@ -96,15 +60,6 @@ namespace BookShelf.WebForms.Pages
         protected global::System.Web.UI.WebControls.Label PublicationYearLabel;
 
         /// <summary>
-        /// PublicationYearTextBox control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox PublicationYearTextBox;
-
-        /// <summary>
         /// QuantityLabel control.
         /// </summary>
         /// <remarks>
@@ -114,21 +69,12 @@ namespace BookShelf.WebForms.Pages
         protected global::System.Web.UI.WebControls.Label QuantityLabel;
 
         /// <summary>
-        /// QuantityTextBox control.
+        /// DeleteButton control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox QuantityTextBox;
-
-        /// <summary>
-        /// UpdateButton control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateButton;
+        protected global::System.Web.UI.WebControls.Button DeleteButton;
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using BookShelf.Application.Contracts.Services;
@@ -14,26 +16,16 @@ namespace BookShelf.WebForms
             _bookService = bookService;
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected async void Page_Load(object sender, EventArgs e)
         {
-            var books = _bookService.GetAllBooksAsync().ConfigureAwait(false).GetAwaiter().GetResult();
+            Page.RegisterAsyncTask(new PageAsyncTask(BindBooksGridViewDataSource));
+        }
+
+        private async Task BindBooksGridViewDataSource(CancellationToken cancellationToken)
+        {
+            var books = await _bookService.GetAllBooksAsync(cancellationToken);
             BooksGridView.DataSource = books;
-        }
-
-        protected void BookDetailsLinkButton_Click(object sender, EventArgs e)
-        {
-            var bookId = GetBookId(sender as Button);
-
-        }
-
-        protected void BookDeleteLinkButton_Click(object sender, EventArgs e)
-        {
-            var bookId = GetBookId(sender as Button);
-        }
-
-        private static Guid GetBookId(Button button)
-        {
-            return Guid.TryParse(button.CommandArgument, out var id) ? id : Guid.Empty;
+            BooksGridView.DataBind();
         }
     }
 }

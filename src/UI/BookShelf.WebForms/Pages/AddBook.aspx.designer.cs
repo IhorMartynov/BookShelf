@@ -11,26 +11,8 @@ namespace BookShelf.WebForms.Pages
 {
 
 
-    public partial class BookDetails
+    public partial class AddBook
     {
-
-        /// <summary>
-        /// IdHiddenField control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HiddenField IdHiddenField;
-
-        /// <summary>
-        /// BookTitleLabel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label BookTitleLabel;
 
         /// <summary>
         /// TitleLabel control.
@@ -123,12 +105,30 @@ namespace BookShelf.WebForms.Pages
         protected global::System.Web.UI.WebControls.TextBox QuantityTextBox;
 
         /// <summary>
-        /// UpdateButton control.
+        /// CategoryLabel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button UpdateButton;
+        protected global::System.Web.UI.WebControls.Label CategoryLabel;
+
+        /// <summary>
+        /// CategoryDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList CategoryDropDownList;
+
+        /// <summary>
+        /// SaveButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SaveButton;
     }
 }

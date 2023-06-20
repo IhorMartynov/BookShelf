@@ -1,14 +1,11 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Pages/Site.Master" AutoEventWireup="true" CodeBehind="BookDetails.aspx.cs" Inherits="BookShelf.WebForms.Pages.BookDetails" Async="true" %>
+﻿<%@ Page Language="C#" MasterPageFile="Site.Master" AutoEventWireup="true" CodeBehind="AddBook.aspx.cs" Inherits="BookShelf.WebForms.Pages.AddBook" Async="true" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
 
     <main>
         <section class="row">
-            <asp:HiddenField runat="server" ID="IdHiddenField"/>
-            <h1>
-                <asp:Label Id="BookTitleLabel" runat="server" Visible="True"></asp:Label>
-            </h1>
-            <p class="lead">Update book details:</p>
+            <h1>New book record</h1>
+            <p class="lead">Fill in all the fields:</p>
 
             <div>
                 <div class="mb-3">
@@ -31,7 +28,11 @@
                     <asp:Label ID="QuantityLabel" runat="server" Text="Quantity:" for="QuantityTextBox" class="form-label"></asp:Label>
                     <asp:TextBox ID="QuantityTextBox" runat="server" CssClass="form-control" type="number"></asp:TextBox>
                 </div>
-                <asp:Button ID="UpdateButton" runat="server" Text="Update" OnClick="UpdateBookOnClick" CssClass="btn btn-success"/>
+                <div class="mb-3">
+                    <asp:Label ID="CategoryLabel" runat="server" Text="Category:" for="CategoryDropDownList" class="form-label"></asp:Label>
+                    <asp:DropDownList ID="CategoryDropDownList" runat="server" CssClass="form-control" DataTextField="Name" DataValueField="Id" />
+                </div>
+                <asp:Button ID="SaveButton" runat="server" Text="Update" OnClick="SaveButton_OnClick" CssClass="btn btn-success"/>
             </div>
         </section>
     </main>
